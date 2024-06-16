@@ -1,3 +1,5 @@
+from datetime import timedelta, datetime
+
 from rest_framework.serializers import ValidationError
 
 
@@ -31,11 +33,8 @@ class TimeValidator:
         self.field = field
 
     def __call__(self, value):
-        val = dict(value).get(self.field)
-        duration_seconds = (val.hour * 3600 +
-                            val.minute * 60 +
-                            val.second)
-        if duration_seconds is not None and duration_seconds > 120:
+        dur_val = value.get(self.field)
+        if dur_val is not None and int(dur_val) > 120:
             raise ValidationError("Время больше 120 секунд!")
 
 

@@ -38,8 +38,8 @@ class Habits(models.Model):
     reward = models.CharField(max_length=50,
                               verbose_name='Вознаграждение',
                               **NULLABLE)
-    duration_time = models.TimeField(default=timedelta(seconds=120),
-                                     verbose_name='Время на выполнение')
+    duration_time = models.IntegerField(default=10,
+                                        verbose_name='Время на выполнение, в секундах')
     is_public = models.BooleanField(default=False,
                                     verbose_name='Признак публичности')
 
